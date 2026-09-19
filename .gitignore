@@ -4,3 +4,13 @@ vimrc
 SimulateImages/SimulateImages
 *.o
 DAMICMSims/DamicG4/gdml/*
+
+# Editor lock/autosave files
+\#*\#
+.\#*
+
+# Stale VCS metadata from old checkouts
+.svn/
+
+# Simulation run output (not source)
+DAMICMSims/DamicG4/HFIR_gdml/HFIR_gdml/run/
