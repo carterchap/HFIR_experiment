@@ -1,0 +1,17 @@
+/control/verbose 0
+/run/verbose 0
+/run/initialize
+/tracking/verbose 0
+/event/verbose 0
+/random/setSeeds 30991 7750
+/damic/gun/particle ion
+/damic/gun/ion 27 60 0 0
+/damic/gun/energy/mono 0 eV
+/damic/gun/direction/oned
+/damic/gun/direction/onedX 1
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0
+/damic/gun/position/dovolume
+/damic/gun/position/addvolume CopperBox_PV 1
+/analysis/setFileName CopperBox_PV60a27z_Seeds30991_7750.root
+/run/beamOn 20000

@@ -1,0 +1,2 @@
+DAMICMSims/DamicG4/HFIR_gdml/**/*.gdml filter=lfs diff=lfs merge=lfs -text
+DAMICMSims/DamicG4/HFIR_gdml/**/*.xml filter=lfs diff=lfs merge=lfs -text

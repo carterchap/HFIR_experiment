@@ -1,0 +1,26 @@
+/control/verbose 0
+/run/verbose 0
+/run/initialize
+/tracking/verbose 0
+/event/verbose 0
+/damic/analysis/setstoreparticleinfo 1
+/damic/analysis/setstoretrack 0
+/damic/stack/fulldecay 0
+/damic/gun/particle ion
+/damic/gun/energy/mono 0 eV
+/damic/gun/direction/oned
+/damic/gun/direction/onedX 1
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0
+
+/damic/gun/position/dosurface
+/damic/gun/position/setadvdiffmodel true
+/damic/gun/position/setccdfacing false
+/damic/gun/position/setminembeddist 0 nm
+/damic/gun/position/setmaxembeddist 50 nm
+
+/random/setSeeds 20027 898
+/damic/gun/ion 82 210 0 0.0
+/damic/gun/position/addvolume CCD_PV 1 false   
+/analysis/setFileName CCD_PV_210a82z1_10000_s1.root
+/run/beamOn 10000

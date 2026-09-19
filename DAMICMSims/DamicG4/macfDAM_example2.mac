@@ -1,0 +1,18 @@
+/control/verbose 0
+/run/verbose 0
+/run/initialize
+/tracking/verbose 0
+/event/verbose 0
+/damic/gun/particle e-
+/damic/gun/direction/distri Isotropic
+/damic/gun/direction/thetamin 0
+/damic/gun/direction/thetamax 180
+/damic/gun/direction/phimin -180
+/damic/gun/direction/phimax 180
+/damic/gun/position/domaterial G4_Cu
+/damic/gun/position/mother WorldLV
+/damic/gun/energy/distri Uniform
+/damic/gun/energy/bot 0.5 MeV
+/damic/gun/energy/top 4 MeV
+/analysis/setFileName G4_Cu_electron.root
+/run/beamOn 100000

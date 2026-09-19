@@ -1,0 +1,10 @@
+## This code paste simulated clusters on empty images.
+## the empty images can be existing blanks one or can be produced by assuming
+## a given background
+
+
+To compile :
+> make
+
+To run:
+./SimulateImages <configFile>

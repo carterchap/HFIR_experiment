@@ -1,0 +1,6 @@
+DAMICMSims/DamicG4/build/
+setup.sh
+vimrc
+SimulateImages/SimulateImages
+*.o
+DAMICMSims/DamicG4/gdml/*

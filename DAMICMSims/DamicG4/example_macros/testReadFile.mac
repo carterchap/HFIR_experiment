@@ -1,0 +1,11 @@
+/control/verbose 1
+/run/verbose 1
+/run/initialize
+/tracking/verbose 0
+/event/verbose 0
+/damic/analysis/setstoreparticleinfo 1
+/random/setSeeds 1654 9876
+
+/damic/gun/file  muon_N500_shield.root
+/analysis/setFileName read_shield.root
+/run/beamOn 100

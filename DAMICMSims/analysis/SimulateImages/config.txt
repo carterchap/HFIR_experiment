@@ -1,0 +1,59 @@
+# CCD info
+NCCDS 50
+PIXELSIZEX 6000
+PIXELSIZEY 6000
+
+# Clusters infos
+SIMMODE geant4 
+SIMDIR .
+SIMFILE CROCchip_PV_92_235_.root
+NCLUSTERS 30
+
+# Image infos
+IMGMODE new
+IMGDIR blankImages/
+OUTFILE blank.root
+#BINNING and DEBUG: possible values 0, 1, 2 (see help for info) 
+BINFLAG 2
+DEBUG 0
+
+SIZE 4000 4000 675
+
+#readout noise in e-
+PEDESTAL 0
+SIGMA 0.25
+#SIGMA 0
+
+#saturation in ADCU
+#SATURATION 65535  #default
+SATURATION 100000000 #test
+
+#Dark current level [e-/pix/day]
+#DARKCURRENT 0.01
+DARKCURRENT 0.
+
+#num of amplifier - only used for skipper continuous readout; values: 1, 2, 4
+AMPLI 1
+#time to read a pixel: [s]
+READTIME 0.001
+
+# Output infos
+OUTFORMAT root
+OUTDIR simulatedImagesOutput/
+OUTFILE out_
+
+# Diffusion parameters infos 
+DIFF_MODEL std
+DIFF_A  0.14
+DIFF_B  0.001
+DIFF_OFFSET 0 
+
+#general
+SEED 321
+#efactor from ADCu to keV. 1 e- corresponds to ~14.5 ADCu, when using 3.77 eV ionisation energy and 2.6e-4 keV->ADCU conversion factor
+e_factor 2.6e-4
+
+
+#CLUSTER SEARCH PARAMETERS -->not mandatory.Default =  5*pedestal_sigma
+#for 0.25 e- noise, 5sigma corresponds to ~ 20 ADCu.
+THR_ADCU  10

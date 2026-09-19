@@ -1,0 +1,10 @@
+1 200000
+#Test comment, please ignore
+50 27 
+60 27
+224 89
+#Example of running decay on surface. First number is minimum embeding depth (usually 0), second is maximum. Both in nm
+#Use "uni" for uniform embedded, "dif" for advanced diffusion model (in which case "maximum" becomes the characteristic depth)
+300 101 uni 2 1000
+CopperTopPlatePV
+CopperBasePlatePV

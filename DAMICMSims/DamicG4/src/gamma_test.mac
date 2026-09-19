@@ -1,0 +1,47 @@
+# gamma_test.mac
+#
+# Draws the apparatus geometry, then fires 30 mono-energetic 1 MeV
+# gammas straight down (-Z; Z is confirmed vertical in this apparatus)
+# onto the lead castle's roof, so you can visually confirm they get
+# absorbed/attenuated rather than passing straight through.
+#
+# Unlike /damic/gun/cosmogenic (which always assigns its own built-in
+# energy spectrum and ignores /damic/gun/energy/mono), this uses the
+# generic "Para" (box) position source, so the 1 MeV setting actually
+# takes effect.
+#
+# MUST be run from an interactive session, not passed as the batch
+# macro argument -- DAMICG4 only creates the vis manager when launched
+# with no macro on the command line:
+#   cd .../HFIR_gdml/HFIR_gdml/run
+#   /path/to/build/DAMICG4 ../gdml/apparatus.gdml
+# then, in the Qt window's command line:
+#   /control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/src/gamma_test.mac
+
+/control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/vis.mac
+
+/damic/gun/particle gamma
+/damic/gun/energy/mono 1 MeV
+
+# Straight down.
+/damic/gun/direction/oned
+/damic/gun/direction/onedX 0
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ -1
+
+# Source: a small 60x60mm patch (30 gammas land at random points
+# within it, all at the same height -- paraz 0 means no spread in Z)
+# centered over lead_castle_full's footprint (its real content spans
+# roughly x[-787,787] y[-348,770] z[-368,673] in this frame), starting
+# 900mm up -- comfortably above its ~673mm roof -- so every gamma
+# crosses the lead on its way down.
+/damic/gun/position/doshape Para
+/damic/gun/position/centerx 0 mm
+/damic/gun/position/centery 211 mm
+/damic/gun/position/centerz 900 mm
+/damic/gun/position/parax 60 mm
+/damic/gun/position/paray 60 mm
+/damic/gun/position/paraz 0 mm
+
+/analysis/setFileName gamma_test.root
+/run/beamOn 30

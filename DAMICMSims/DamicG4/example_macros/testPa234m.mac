@@ -1,0 +1,21 @@
+/control/verbose 0
+/run/verbose 0
+/run/initialize
+/tracking/verbose 0
+/event/verbose 0
+/damic/analysis/setstoreparticleinfo 0
+/damic/analysis/setstoretrack 0
+/damic/stack/fulldecay 0
+/damic/gun/particle ion
+/damic/gun/energy/mono 0 eV
+/damic/gun/direction/oned
+/damic/gun/direction/onedX 1
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0
+/damic/gun/position/dovolume
+/random/setSeeds 20249 23634
+/damic/gun/ion 91 234 0 73.92
+/damic/gun/position/addvolume CCDSensor_PV 1 false   
+/analysis/setFileName CCDSensor_PV_234a91z1_1_s1.root
+/run/beamOn 1
+
