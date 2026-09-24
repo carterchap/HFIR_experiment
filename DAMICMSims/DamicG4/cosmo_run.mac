@@ -1,0 +1,105 @@
+
+#   /control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/cosmo_run.mac
+
+#/control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/vis.mac
+
+/run/initialize
+
+# --- Muon source: 6 discrete points on a 500mm-radius shell centered on
+# the 3-CCD cluster (a coarse, macro-only approximation of a solid-angle
+# acceptance scan), each firing straight at one specific CCD's own
+# center so every CCD gets hit from more than one direction. A true
+# continuous random shell with automatic aim-at-target isn't something
+# the existing /damic/gun/... commands support (confirmed by reading
+# DAMICParticleSource.cc: doshape Sphere samples the whole volume, not
+# just the surface, and none of the direction modes compute a per-event
+# aim vector toward a fixed target from a varying start point -- that
+# would need a new C++ source mode) -- this is the deliberately-chosen
+# macro-only approximation instead: 6 hand-picked shell points (the
+# cardinal directions from the CCD cluster's own centroid), each with
+# its own precomputed fixed direction. 1 GeV muons are minimum-ionizing
+# and only lose a small fraction of their energy crossing modest
+# lead/steel thicknesses, so they should reliably punch through
+# whatever real shielding sits between each shell point and its target
+# CCD and still register a hit.
+#
+# NOTE: this is NOT the cosmogenic gun mode from before -- doshape Para
+# is only available on the general /damic/gun/position/... commands
+# (/damic/gun/cosmogenic/position only supports "cuboid"), so this uses
+# a plain mono-energetic mu- source instead of the cosmogenic
+# energy/angle spectrum.
+/damic/gun/particle mu-
+/damic/gun/energy/mono 1 GeV
+
+# Shell centered on C = (20.65, 152.4, 48.06)mm, the average of
+# CCDInStorageBox1Pos (5.89375,152.4,48.26), CCDInStorageBox2Pos
+# (19.04375,152.4,48.06), and CCDInStorageBox3Pos (37.01975,152.4,
+# 47.86). Radius 500mm clears lead_castle_full's real extent (~787mm
+# wide, ~673mm tall) with margin. Each shell point is C + 500mm*u for a
+# cardinal unit vector u; each direction below is the exact unit vector
+# from that point to one specific CCD's own center (normalize(target -
+# point)), cycled across the 3 CCDs so each gets hit from 2 different
+# shell points.
+
+# --- Point 1: +X shell point, aimed at CCD1 ---
+/damic/gun/position/doshape Para
+/damic/gun/position/centerx 520.65 mm
+/damic/gun/position/centery 152.4 mm
+/damic/gun/position/centerz 48.06 mm
+/damic/gun/position/parax 0.5 mm
+/damic/gun/position/paray 0.5 mm
+/damic/gun/position/paraz 0.5 mm
+/damic/gun/direction/oned
+/damic/gun/direction/onedX -1
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0.0004
+/analysis/setFileName cosmo_run.root
+/run/beamOn 100
+
+# --- Point 2: -X shell point, aimed at CCD2 ---
+/damic/gun/position/centerx -479.35 mm
+/damic/gun/position/centery 152.4 mm
+/damic/gun/position/centerz 48.06 mm
+/damic/gun/direction/onedX 1
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0
+/run/beamOn 100
+
+# --- Point 3: +Y shell point, aimed at CCD3 ---
+/damic/gun/position/centerx 20.65 mm
+/damic/gun/position/centery 652.4 mm
+/damic/gun/position/centerz 48.06 mm
+/damic/gun/direction/onedX 0.03272
+/damic/gun/direction/onedY -0.99946
+/damic/gun/direction/onedZ -0.0004
+/run/beamOn 100
+
+# --- Point 4: -Y shell point, aimed at CCD1 ---
+/damic/gun/position/centerx 20.65 mm
+/damic/gun/position/centery -347.6 mm
+/damic/gun/position/centerz 48.06 mm
+/damic/gun/direction/onedX -0.02949
+/damic/gun/direction/onedY 0.99956
+/damic/gun/direction/onedZ 0.0004
+/run/beamOn 100
+
+# --- Point 5: +Z shell point (from directly above), aimed at CCD2 ---
+/damic/gun/position/centerx 20.65 mm
+/damic/gun/position/centery 152.4 mm
+/damic/gun/position/centerz 548.06 mm
+/damic/gun/direction/onedX -0.003212
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ -0.999995
+/run/beamOn 100
+
+# --- Point 6: -Z shell point (from directly below), aimed at CCD3 ---
+# Deliberately included even though it fires upward through whatever
+# support structure sits under the CCDs -- the point of this scan is
+# directional acceptance coverage, not just realistic downward angles.
+/damic/gun/position/centerx 20.65 mm
+/damic/gun/position/centery 152.4 mm
+/damic/gun/position/centerz -451.94 mm
+/damic/gun/direction/onedX 0.03273
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ 0.99946
+/run/beamOn 100

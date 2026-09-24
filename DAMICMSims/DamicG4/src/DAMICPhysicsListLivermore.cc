@@ -166,9 +166,11 @@
 
 #include "G4PhysicsListHelper.hh"
 
+//Changing the micrometer to 0.5 mm for tracking purposes
+
 DAMICPhysicsListLivermore::DAMICPhysicsListLivermore() : G4VUserPhysicsList()
 {
-    defaultCutValue     = 0.1*micrometer;
+    defaultCutValue     = 0.5*millimeter;
     cutForGamma         = defaultCutValue;
     cutForElectron      = 1*nanometer;
     cutForPositron      = defaultCutValue;
@@ -177,8 +179,11 @@ DAMICPhysicsListLivermore::DAMICPhysicsListLivermore() : G4VUserPhysicsList()
     OpVerbLevel = 1;
     SetVerboseLevel(VerboseLevel);
 
+
+//CHANGED THESE CUT VALUES FOR TRACKING PURPOSES
+
     G4EmParameters* param = G4EmParameters::Instance();
-    param->SetLowestElectronEnergy(10*eV);
+    param->SetLowestElectronEnergy(1000*eV);
     param->SetMaxEnergy(100*GeV);
     param->SetNumberOfBinsPerDecade(20);
     param->SetMscStepLimitType(fMinimal);
@@ -904,6 +909,10 @@ void DAMICPhysicsListLivermore::ConstructGeneral()
     }
     G4cout << " DONE " << G4endl;*/
 
+
+
+
+    
 	G4LossTableManager* man = G4LossTableManager::Instance();
   	G4VAtomDeexcitation* ad = man->AtomDeexcitation();
   	if(!ad) {
@@ -934,7 +943,10 @@ void DAMICPhysicsListLivermore::SetCuts()
 
     //special for low energy physics
     // XXX move 50 to 20eV
-    G4double lowlimit=10*eV;
+
+
+    //Changed this for tracking
+    G4double lowlimit=1000*eV;
     G4ProductionCutsTable::GetProductionCutsTable()->SetEnergyRange(lowlimit,100.*GeV);
     
     //set cut values for gamma at first and for e- second and next for e+,

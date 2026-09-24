@@ -1,0 +1,36 @@
+#   /control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/gamma_plane_1MeV.mac
+
+/control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/vis.mac
+
+# --- 1 MeV gamma source, fixed direction straight down ---
+/damic/gun/particle gamma
+/damic/gun/energy/mono 1 MeV
+
+/tracking/verbose 1
+
+# Direction is a single fixed vector (not sampled), pointing straight
+# down. Global Z is vertical in this apparatus (confirmed from
+# table.gdml/cryo_fix.gdml bounding boxes, same convention as
+# cosmo_run.mac's muon source), so -Z is "down".
+/damic/gun/direction/oned
+/damic/gun/direction/onedX 0
+/damic/gun/direction/onedY 0
+/damic/gun/direction/onedZ -1
+
+# Position: uniformly sampled over a thin (10mm) horizontal plane
+# centered 900mm above the origin, spanning +/-900mm in X and Y --
+# comfortably above and wider than lead_castle_full, the tallest/
+# widest real part (~673mm tall, ~787mm across), so every gamma starts
+# above the whole apparatus and travels straight down through it.
+/damic/gun/position/doshape Para
+/damic/gun/position/centerx 0 mm
+/damic/gun/position/centery 0 mm
+/damic/gun/position/centerz 900 mm
+/damic/gun/position/parax 450 mm
+/damic/gun/position/paray 450 mm
+/damic/gun/position/paraz 10 mm
+
+/analysis/setFileName gamma_plane_1MeV.root
+
+# /run/printProgress 10
+# /run/beamOn 10

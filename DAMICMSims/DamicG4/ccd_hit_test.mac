@@ -1,0 +1,20 @@
+#   /control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/ccd_hit_test.mac
+
+#/control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/vis.mac
+
+/run/initialize
+
+#/tracking/verbose 1
+
+/damic/gun/particle e-
+/damic/gun/energy/mono 100 eV
+/damic/gun/direction/distri Isotropic
+
+/damic/gun/position/dovolume
+/damic/gun/position/addvolume CCDModule_PV
+
+/analysis/setFileName ccd_hit_test.root
+
+/run/beamOn 50
+
+

@@ -108,7 +108,7 @@ G4bool DAMICCCDSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 
         const auto motherName = motherPhysical->GetName();
 
-        if(motherName=="CCDModulePair_PV" || motherName=="CCDModule_PV" || 
+        if(motherName=="CCDModulePair_PV" || motherName.find("CCDModule")==0 ||
                 motherName=="ModulePV" || motherName=="ModulePVExt1")
         {
             CCDModulePVFound=true;

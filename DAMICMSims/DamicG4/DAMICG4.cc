@@ -143,9 +143,12 @@ int main(int argc, char** argv)
     
 	runManager->SetUserInitialization(physicsList);    
 
+
+//CHANGING ALL OF THIS TO 1 keV for TRACKING PURPOSES
+
 	// ---- Set lowest kinetic energy for e-/e+ (10 eV) via EM parameters
 	auto em = G4EmParameters::Instance();
-	em->SetLowestElectronEnergy(10*CLHEP::eV);
+	em->SetLowestElectronEnergy(1000*CLHEP::eV);
 
 	// ---- Production cut limit in energy
 	G4double cutEnergy = 10*CLHEP::eV;

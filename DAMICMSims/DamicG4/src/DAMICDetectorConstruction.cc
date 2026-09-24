@@ -47,7 +47,8 @@ namespace
             return vis;
         }
         else if (name == "G4_Pb" || name == "Lead") {
-            auto vis = new G4VisAttributes(G4Colour(1.0, 0.2, 0.2)); // bright red
+            //auto vis = new G4VisAttributes(G4Colour(1.0, 0.2, 0.2)); // bright red
+            auto vis = new G4VisAttributes(false); //invisible to confirm geometry. 
             vis->SetForceSolid(true);
             return vis;
         }
