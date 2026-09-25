@@ -14,7 +14,7 @@
 # macro argument -- DAMICG4 only creates the vis manager when launched
 # with no macro on the command line:
 #   cd .../HFIR_gdml/HFIR_gdml/run
-#   /path/to/build/DAMICG4 ../gdml/apparatus.gdml
+#   /path/to/build/DAMICG4 ../apparatus.gdml
 # then, in the Qt window's command line:
 #   /control/execute /Users/carter_chapman/DAMICM_G4Sims/DAMICMSims/DamicG4/src/gamma_test.mac
 
