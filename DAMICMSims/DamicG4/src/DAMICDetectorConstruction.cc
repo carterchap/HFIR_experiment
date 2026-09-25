@@ -109,7 +109,9 @@ namespace
     void DumpGlobalExtent(G4VPhysicalVolume* pv, const G4AffineTransform& parentToWorld,
                            const std::set<G4String>& targets, int depth=0)
     {
-        G4AffineTransform local(pv->GetObjectRotationValue(), pv->GetObjectTranslation());
+        // G4AffineTransform(rot, t) applies rot inverted, so it takes the frame
+        // rotation (as G4NavigationLevel does) to get the daughter->mother map.
+        G4AffineTransform local(pv->GetFrameRotation(), pv->GetTranslation());
         G4AffineTransform toWorld = local * parentToWorld;
 
         G4LogicalVolume* lv = pv->GetLogicalVolume();

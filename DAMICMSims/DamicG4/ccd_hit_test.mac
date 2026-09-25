@@ -7,14 +7,16 @@
 #/tracking/verbose 1
 
 /damic/gun/particle e-
-/damic/gun/energy/mono 100 eV
+/damic/gun/energy/mono 1 MeV
 /damic/gun/direction/distri Isotropic
 
 /damic/gun/position/dovolume
-/damic/gun/position/addvolume CCDModule_PV
+## /damic/gun/position/addvolume CCDModule_PV
+/damic/gun/position/addvolume StorageBox1_Shell_pv
+/analysis/setFileName ccd_hit_test_2.root
 
-/analysis/setFileName ccd_hit_test.root
+#/run/printProgress 1000
 
-/run/beamOn 50
+/run/beamOn 1000
 
 
